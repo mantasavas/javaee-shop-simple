@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head/>
+<h:body>
+
+    <h1>These orders have been placed:</h1>
+    <ol>
+        <ui:repeat value="#{costumerOrder.getAllOrdersAndCostumers()}" var="costumer">
+            <hr style="margin-right: 70%"/>
+            <p style="color: red">Personal Code #{costumer.personalCode} </p>
+            <p>Name: #{costumer.name}</p>
+            <p>Surname: #{costumer.surname} </p>
+            <ol>
+                <ui:repeat value="#{costumer.order}" var="order">
+                    <hr style="margin-right: 80%"/>
+                    <h:link style="color: blue" value="Order ID: #{order.id}" outcome="createCostumerOrder?costumerPersonalCode=#{costumer.personalCode}" />
+                    <p>Date: #{order.deliveryDate} </p>
+                    <p>Delivery address: #{order.address}</p>
+                    <h:link style="color: oranger" value="Update Order" outcome="optimisticUpdateOrder">
+                        <f:param name="orderID" value = "#{order.id}" />
+                    </h:link>
+                </ui:repeat>
+            </ol>
+        </ui:repeat>
+    </ol>
+</h:body>
+</html>

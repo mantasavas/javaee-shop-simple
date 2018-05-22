@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head/>
+<h:body>
+    <h1>Please enter manufacturers product details: </h1>
+    <h:form>
+        <p><span>Barcode:</span>
+            <h:inputText a:placeholder="barcode" value="#{manufacturProducts.newProduct.barcode}" required="true">
+                <f:validateLength minimum="4" maximum="4" />
+            </h:inputText>
+        </p>
+        <p><span>Title: </span><h:inputText a:placeholder="title" value="#{manufacturProducts.newProduct.title}" required="true" /></p>
+        <p><span>Description: </span><h:inputText a:placeholder="description" value="#{manufacturProducts.newProduct.description}" required="true" /></p>
+        <p><span>Cost:</span><h:inputText a:placeholder="cost" value="#{manufacturProducts.newProduct.cost}" required="true" /></p>
+        <p>
+            <h:commandButton value="Add Product" action="#{manufacturProducts.creatProduct}">
+                <f:param name="manufacturerId" value="#{manufacturProducts.findedManufacturer.id}" />
+            </h:commandButton>
+        </p>
+        <p><h:link outcome="productList" value="Go Back"/></p>
+    </h:form>
+</h:body>
+</html>

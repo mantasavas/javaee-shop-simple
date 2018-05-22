@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head/>
+<h:body>
+    <h2> You are one step away from ordering goods. Just send money for a given address bellow, and we will ship package to your provided address: </h2>
+    <h3 style="color: red"> #{processPayment.processingMessage} </h3>
+    <h3 style="color: red"> Total sum, you must send: #{processPayment.totalSum} EUR. </h3>
+    <p><h:link outcome="orderList" value="Go Back"/></p>
+</h:body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
+>
+
+<h:body>
+    <h:form>
+        <h2> Optimistic Exception Example </h2>
+        <h3> #{updateOrder} </h3>
+
+        <p><span>Delivery Date:</span>
+            <h:inputText value="#{updateOrder.findedOrder.deliveryDate}" required="true">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:inputText></p>
+        <p><span>Delivery Address: </span><h:inputText a:placeholder="Address" value="#{updateOrder.findedOrder.address}" required="true" /></p>
+        <p>
+            <h:commandButton value="Update" action="#{updateOrder.updateSelectedOrder()}">
+                <f:param name="orderID" value = "#{updateOrder.findedOrder.id}" />
+            </h:commandButton>
+        </p>
+
+        <c:if test="#{updateOrder.raisedOptimistic eq true}">
+            <h1 style="color: red"> Optimistic Execption </h1>
+            <p style="color: red"> Someone has changed order before you! Their updated order: </p>
+            <ul style="color: red">
+                <li style="color: red"> #{updateOrder.conflictingOrder.deliveryDate} </li>
+                <li style="color: red"> #{updateOrder.conflictingOrder.address} </li>
+            </ul>
+            <p style="color: red">Do you really want to merge changes?</p>
+            <h:commandButton value="Merge" action="#{updateOrder.mergeChanges()}">
+                <f:param name="orderID" value = "#{updateOrder.findedOrder.id}" />
+            </h:commandButton>
+        </c:if>
+    </h:form>
+
+    <hr/>
+
+    <h:form>
+        <h2> Long Running Computational Process Example</h2>
+        <h3> #{findPowerOfTwo} </h3>
+        <p><span>Number To Be Raised: </span><h:inputText a:placeholder="Number" value="#{findPowerOfTwo.numberToBeRaised}" required="true" /></p>
+        <p><h:outputText value="#{findPowerOfTwo.isResultReady()}" style="color: red" /></p>
+        <p>
+            <h:commandButton value="Calculate" disabled="#{findPowerOfTwo.areCalculationsDone()}" action="#{findPowerOfTwo.runCalculations()}">
+                <f:param name="orderID" value = "#{updateOrder.findedOrder.id}" />
+            </h:commandButton>
+        </p>
+    </h:form>
+
+    <hr/>
+
+    <p><h:link outcome="orderList" value="Go Back"/></p>
+</h:body>
+
+</html>

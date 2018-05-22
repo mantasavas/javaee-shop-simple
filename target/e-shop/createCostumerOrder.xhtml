@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+>
+<h:head/>
+<h:body>
+    <h1>Please enter order details: </h1>
+    <h:form>
+        <p><span>Delivery Date:</span>
+            <h:inputText a:placeholder="DeliveryDate" value="#{costumerOrder.newOrder.deliveryDate}" required="true">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:inputText></p>
+        <p><span>Delivery Address: </span><h:inputText a:placeholder="Address" value="#{costumerOrder.newOrder.address}" required="true" /></p>
+        <p>
+            <h:commandButton value="Place Order" action="#{costumerOrder.createOrder()}">
+                <f:param name="costumerPersonalCode" value="#{costumerOrder.findedCostumer.personalCode}" />
+            </h:commandButton>
+        </p>
+        <p><h:link outcome="productList" value="Go Back"/></p>
+    </h:form>
+</h:body>
+</html>

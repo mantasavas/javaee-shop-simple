@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h1>#{manufacturProducts.loadManufacturersAndProducts()}</h1>
+    <h1>Our products in stock:</h1>
+    <ol>
+        <ui:repeat value="#{manufacturProducts.getAllManufacturers()}" var="manufacturer">
+            <hr style="margin-right: 70%"/>
+            <h:link style="color: red" value="Manufacturer id: #{manufacturer.id}" outcome="createManufacturerProduct?manufacturerId=#{manufacturer.id}" />
+            <p>name: #{manufacturer.name}</p>
+            <p>descrition: #{manufacturer.description} </p>
+            <p>location: #{manufacturer.location} </p>
+            <ol>
+                <ui:repeat value="#{manufacturer.products}" var="product">
+                    <hr style="margin-right: 80%"/>
+                    <p style="color: blue">Product barcode: #{product.barcode}</p>
+                    <p>title: #{product.title} </p>
+                    <p>description: #{product.description} </p>
+                    <p>cost: #{product.cost} </p>
+                </ui:repeat>
+
+            </ol>
+        </ui:repeat>
+
+    </ol>
+    <h1>#{authorsMyBatis.testing()}</h1>
+</h:body>
+</html>

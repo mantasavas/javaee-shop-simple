@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+
+<h1>#{costumerOrdersMyBatis.hello()}</h1>
+<h1>Our products in stock:</h1>
+<h:body>
+
+<ol>
+    <ui:repeat value="#{costumerOrdersMyBatis.allCostumers}" var="costumer">
+        <hr style="margin-right: 70%"/>
+        <p style="color: red">Personal Code #{costumer.personalcode} </p>
+        <p>Name: #{costumer.name}</p>
+        <p>Surname: #{costumer.surname} </p>
+    </ui:repeat>
+</ol>
+
+</h:body>
+</html>
